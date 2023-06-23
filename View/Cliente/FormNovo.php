@@ -100,7 +100,7 @@
         </select>
         <br>
 
-        <button type="button">Cadastrar</button>
+        <button >Cadastrar</button>
         <button type="reset">Limpar</button>
 
     </form>

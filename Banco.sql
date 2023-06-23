@@ -95,7 +95,7 @@ CREATE TABLE venda (
     MetodoPagamento_id integer
 );
 CREATE TABLE itemvenda (
-	id_itemvenda integer auto_increment primary key,
+	id_itemVenda integer auto_increment primary key,
 	venda_id integer,
 	produto_id integer,
 	qtd integer,
