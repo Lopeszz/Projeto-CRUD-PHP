@@ -22,7 +22,7 @@ class Produto
         $this->preco = $preco;
         $this->qtd_estoque = $qtd_estoque;
 		$this->fornecedor_id = $fornecedor_id;
-		$this->$id_produto = $id_produto;
+		$this->id_produto = $id_produto;
     }
 
 

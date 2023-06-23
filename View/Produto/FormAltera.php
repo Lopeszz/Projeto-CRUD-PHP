@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Funcionario</title>
 </head>
+
 <?php
-$id = $_POST['id'];
+$id_produto = $_POST['id_produto'];
 $nome = $_POST['nome'];
 $descricao = $_POST['descricao'];
 $preco = $_POST['preco'];
@@ -19,7 +20,7 @@ $fornecedor_id = $_POST['fornecedor_id'];
 <body>
     <h1>Editar Funcionario</h1>
     <form action="update.php" method="post">
-        <input type="hidden" name="id" id="id" value="<?= $id ?>">
+        <input type="hidden" name="id_produto" id="id_produto" value="<?= $id_produto ?>">
         <br>
 
         <label for="nome">Nome:</label>
@@ -38,9 +39,34 @@ $fornecedor_id = $_POST['fornecedor_id'];
         <input type="text" name="qtd_estoque" id="qtd_estoque" value="<?= $qtd_estoque ?>">
         <br>
 
-        <label for="fornecedor_id">Fornecedor_id:</label>
-        <input type="text" name="fornecedor_id" id="fornecedor_id" value="<?= $fornecedor_id ?>">
-        <br>
+        <label for="fornecedor_id">Fornecedor:</label>
+        <select name="fornecedor_id" id="fornecedor_id">
+            <option value="null"></option>
+
+            <?php
+
+            define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
+            require_once BASE . '/Model/Fornecedor.php';
+            require_once BASE . '/Database/DAOFornecedor.php';
+            require_once BASE . '/Database/Conexao.php';
+
+            $daoConexao = new DAOFornecedor();
+            $lista = $daoConexao->listaTodos();
+
+
+            foreach ($lista as $fornecedor) {
+                $idFornecedordaLista = $fornecedor['id_fornecedor'];
+                $nome = $fornecedor['nome'];
+                if ($fornecedor_id == $idFornecedordaLista) {
+                    echo "<option value='$idFornecedordaLista' selected>$nome</option>";
+                } else {
+                    echo "<option value='$idFornecedordaLista'> $nome</option>";
+                }
+
+            }
+            ?>
+        </select>
+        </br>
 
         <button type="buttom">Salvar</button>
     </form>

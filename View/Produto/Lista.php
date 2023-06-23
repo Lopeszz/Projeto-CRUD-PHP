@@ -46,7 +46,7 @@
             </td>
             <td>
                 <form action="FormAltera.php" method="post">
-                    <input type="hidden" name="id" id="id" value="<?= $produto['id_produto'] ?>">
+                    <input type="hidden" name="id_produto" id="id_produto" value="<?= $produto['id_produto'] ?>">
                     <input type="hidden" name="nome" id="nome" value="<?= $produto['nome'] ?>">
                     <input type="hidden" name="descricao" id="descricao" value="<?= $produto['descricao'] ?>">
                     <input type="hidden" name="preco" id="preco" value="<?= $produto['preco'] ?>">

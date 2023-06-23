@@ -42,7 +42,7 @@
             $lista = $daoConexao->listaTodos();
 
             foreach ($lista as $fornecedor) {
-                $id = $fornecedor['id_fornecedor'];
+                $id = $fornecedor['id'];
                 $nome = $fornecedor['nome'];
                 echo "<option value='$id'>$nome</option>";
             }
@@ -50,7 +50,6 @@
 
         </select>
         </br>
-        
         <button type="submit">Cadastro</button>
         <button type="reset">Limpar</button>
 
