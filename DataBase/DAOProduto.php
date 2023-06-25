@@ -10,6 +10,32 @@ class DAOProduto
         return $lista;
     }
 
+    public function obterNomeFornecedor($idFornecedor)
+    {
+        $sql = 'SELECT nome FROM fornecedor WHERE id_fornecedor = ?';
+        $pst = conexao::getPreparedStatement($sql);
+        $pst->bindValue(1, $idFornecedor);
+        $pst->execute();
+        $result = $pst->fetch(PDO::FETCH_ASSOC);
+        return $result['nome'];
+    }
+
+    public function obterProdutoPorId($produtoId)
+    {
+        $sql = 'SELECT * FROM produto WHERE id_produto = ?';
+        $pst = Conexao::getPreparedStatement($sql);
+        $pst->bindValue(1, $produtoId);
+        $pst->execute();
+        $result = $pst->fetch(PDO::FETCH_ASSOC);
+
+        if ($result !== false) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
+
     public function inclui(Produto $Produto)
     {
         $sql = 'INSERT INTO produto (nome,descricao,preco,qtd_estoque,fornecedor_id) values (?,?,?,?,?);';
@@ -30,7 +56,7 @@ class DAOProduto
     public function exclui($id)
     {
         $sql = 'DELETE from Produto where id_produto = ?;';
-        
+
         $pst = conexao::getPreparedStatement($sql);
         $pst->bindValue(1, $id);
         if ($pst->execute()) {

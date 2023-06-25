@@ -34,9 +34,16 @@ define('FOLDER', 'macaco');
     ?>
     <h1>Menu Produto</h1>
     <?php
-    
+
     echo '<a href="http://' . HOST . '/' . FOLDER . '/View/Produto/FormNovo.php" style="text-decoration:none"><button>Cadastrar</button></a><br>';
     echo '<a href="http://' . HOST . '/' . FOLDER . '/View/Produto/Lista.php" style="text-decoration:none"><button>Lista</button></a>';
+    ?>
+
+    <h1>Menu Venda</h1>
+    <?php
+
+    echo '<a href="http://' . HOST . '/' . FOLDER . '/View/Venda/FormNovo.php" style="text-decoration:none"><button>Cadastrar</button></a><br>';
+    echo '<a href="http://' . HOST . '/' . FOLDER . '/View/Venda/Lista.php" style="text-decoration:none"><button>Lista</button></a>';
     ?>
 </body>
 

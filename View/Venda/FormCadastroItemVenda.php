@@ -1,70 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+
+    <title>Cadastro de Venda</title>
+
 </head>
 
 <body>
-    <h1>Novo</h1>
-    <form action="Novo.php" method="post" onsubmit="return validateForm()">
+    <div class="container">
 
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome">
-        <br>
+        <h1>Itens da Venda</h1>
 
-        <label for="descricao">Descrição:</label>
-        <input type="text" name="descricao" id="descricao">
-        <br>
+        <form action="cadastraItemVenda.php" method="post">
 
-        <label for="preco">Preço:</label>
-        <input type="text" name="preco" id="preco">
-        <br>
+            <label for="produto_id">Produto</label><br>
+            <select name="produto_id" id="produto_id">
+                <?php
+                define('BASE', $_SERVER['DOCUMENT_ROOT'] . '/macaco');
 
-        <label for="qtd_estoque">Quantidade em Estoque:</label>
-        <input type="text" name="qtd_estoque" id="qtd_estoque">
-        <br>
+                require_once BASE . '/Model/Produto.php';
+                require_once BASE . '/Database/DAOProduto.php';
+                require_once BASE . '/Database/Conexao.php';
 
-        <label for="fornecedor_id">ID do Fornecedor:</label>
-        <select name="fornecedor_id" id="fornecedor_id">
-            <option value="null"></option>
+                $DAOProduto = new DAOProduto();
+                $lista = $DAOProduto->listaTodos();
+                foreach ($lista as $Produto) {
+                    $nomeFornecedor = $DAOProduto->obterNomeFornecedor($Produto['fornecedor_id']);
+                    echo '<option value="' . $Produto['id_produto'] . '">' . $Produto['nome'] . ' - ' . $nomeFornecedor . '</option>';
+                }
+                ?>
+            </select><br>
+
+            <label for="qtd">Quantidade</label><br>
+            <input type="number" name="qtd" id="qtd"><br>
+            <button>Adicionar</button>
+        </form>
+
+
+        <br><br>
+        <table border="1">
+            <tr>
+                <th>id_itemvenda</th>
+                <th>PRODUTO</th>
+                <th>QUANTIDADE</th>
+                <th>SUBTOTAL</th>
+            </tr>
             <?php
-
-            define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
-            require_once BASE . '/Model/Fornecedor.php';
-            require_once BASE . '/Database/DAOFornecedor.php';
+            require_once BASE . '/Database/DAOItemVenda.php';
             require_once BASE . '/Database/Conexao.php';
 
-            $daoConexao = new DAOFornecedor();
-            $lista = $daoConexao->listaTodos();
+            $DAOItemVenda = new DAOItemVenda();
+            session_start();
 
-            foreach ($lista as $fornecedor) {
-                $id = $fornecedor['id'];
-                $nome = $fornecedor['nome'];
-                echo "<option value='$id'>$nome</option>";
+
+            $lista = $DAOItemVenda->listaPorVenda($_SESSION['vendaaberta']);
+            $total = 0;
+            foreach ($lista as $registro) {
+                $produtoId = $registro['produto_id'];
+
+                $produto = $DAOProduto->obterProdutoPorId($produtoId);
+
+                if ($produto !== null) {
+                    $valorProduto = $produto['preco'];
+                    $nomeProduto = $produto['nome'];
+
+                    echo '<tr>';
+                    echo '<td>' . $registro['id_itemvenda'] . '</td>';
+                    echo '<td>' . $nomeProduto . '</td>';
+                    echo '<td>' . $registro['qtd'] . '</td>';
+                    $subtotal = $valorProduto * $registro['qtd'];
+                    echo '<td>' . $subtotal . '</td>';
+
+                    echo '</tr>';
+
+                    $total += $subtotal;
+                }
             }
             ?>
+        </table>
+        <br><br>
 
-        </select>
-        </br>
-        <button type="submit">Cadastro</button>
-        <button type="reset">Limpar</button>
+        <label>Total =
+            <?= 'R$' . sprintf("%.2f", $total) ?>
+            
+        </label><br>
 
-    </form>
+        <form action="FecharVenda.php" method="post">
+            <? var_dump($total) ?>
+            <input type="hidden" name="total_venda" id="total_venda" value="<?= $total ?>">
+            
 
-    <script>
-        function validateForm() {
-            var fornecedor_id = document.getElementById("fornecedor_id").value;
-            if (fornecedor_id === "null") {
-                alert("Selecione um fornecedor válido");
-                return false;
-            }
-            return true;
-        }
-    </script>
+            <button>Fechar a venda</button>
+        </form>
+    </div>
 
 </body>
 

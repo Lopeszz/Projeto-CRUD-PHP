@@ -5,6 +5,7 @@ class DAOItemVenda
     {
         $lista = [];
         $pst = conexao::getPreparedStatement('select id_itemvenda, venda_id, produto_id, qtd, subtotal, qtd*subtotal as subtotal from itemvenda where venda_id = ?;');
+        $pst->bindValue(1, $idVenda);
         $pst->execute();
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;

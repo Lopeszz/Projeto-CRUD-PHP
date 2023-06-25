@@ -3,23 +3,23 @@
 class ItemVenda
 {
 
+    private $id_ItemVenda;
+    private $venda_id;
+    private $produto_id;
     private $qtd;
 
     private $subtotal;
 
-    private $id_ItemVenda;
 
-    private $venda_id;
 
-    private $produto_id;
 
-    public function __construct($qtd, $subtotal, $id_ItemVenda = null, $venda_id = null, $produto_id = null)
+    public function __construct($id_ItemVenda = null, $venda_id = null, $produto_id = null, $qtd, $subtotal)
     {
-        $this->qtd = $qtd;
-        $this->subtotal = $subtotal;
         $this->id_ItemVenda = $id_ItemVenda;
         $this->venda_id = $venda_id;
         $this->produto_id = $produto_id;
+        $this->qtd = $qtd;
+        $this->subtotal = $subtotal;
     }
 
     /**

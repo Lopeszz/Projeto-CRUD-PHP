@@ -87,12 +87,13 @@ create table subgrupodoproduto(
 
 CREATE TABLE venda (
 	id_venda integer auto_increment primary key,
-	cliente_id integer,
-	funcionario_id integer,
+	situacao boolean,
+	observacoes varchar(5000),
 	data_venda varchar(400),
 	total_venda decimal (10,2),
-	observacoes varchar(5000),
-    MetodoPagamento_id integer
+	funcionario_id integer,
+	cliente_id integer,
+  metodoPagamento_id integer
 );
 CREATE TABLE itemvenda (
 	id_itemVenda integer auto_increment primary key,

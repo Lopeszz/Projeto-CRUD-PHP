@@ -12,14 +12,14 @@
     <h1>Novo</h1>
     <form action="AbrirVenda.php" method="post">
 
-        <label for="cliente">Cliente:</label>
-        <select name="cliente" id="cliente">
+        <label for="id_cliente">Cliente:</label>
+        <select name="id_cliente" id="id_cliente">
             <option value="null"></option>
             <?php
 
             define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
             require_once BASE . '/Model/Cliente.php';
-            require_once BASE . '/Database/DAOCliente.php';
+            require_once BASE . '/Database/DAOCliente.php'; 
             require_once BASE . '/Database/Conexao.php';
 
             $daoConexao = new DAOCliente();
@@ -31,7 +31,6 @@
                 echo "<option value='$id'>$nome</option>";
             }
             ?>
-
         </select>
 
         <button type="submit">Abrir Venda</button>
