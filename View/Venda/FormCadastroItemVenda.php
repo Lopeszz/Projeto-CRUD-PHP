@@ -90,10 +90,7 @@
         </label><br>
 
         <form action="FecharVenda.php" method="post">
-            <? var_dump($total) ?>
             <input type="hidden" name="total_venda" id="total_venda" value="<?= $total ?>">
-            
-
             <button>Fechar a venda</button>
         </form>
     </div>

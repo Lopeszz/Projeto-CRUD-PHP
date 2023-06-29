@@ -39,7 +39,6 @@ class DAOVenda
         
         $pst->bindValue(1, intval($total_venda));
         $pst->bindValue(2, $idvenda);
-        var_dump($total_venda);
         if ($pst->execute()) {
             return true;
         } else {
