@@ -32,13 +32,15 @@ class DAOVenda
         }
     }
 
-    public function fecharVenda($idvenda, $total_venda)
+    public function fecharVenda($idvenda, $total_venda, $obs, $id_metodoPagamento)
     {
-        $sql = 'UPDATE venda SET situacao = 0, total_venda = ? WHERE id_venda = ?;';
+        $sql = 'UPDATE venda SET situacao = 0, observacoes = ?, data_venda = now(), total_venda = ?, metodoPagamento_id = ? WHERE id_venda = ?;';
         $pst = Conexao::getPreparedStatement($sql);
-        
-        $pst->bindValue(1, intval($total_venda));
-        $pst->bindValue(2, $idvenda);
+
+        $pst->bindValue(1, $obs);
+        $pst->bindValue(2, intval($total_venda));
+        $pst->bindValue(3, $id_metodoPagamento);
+        $pst->bindValue(4, $idvenda);
         if ($pst->execute()) {
             return true;
         } else {
@@ -56,6 +58,5 @@ class DAOVenda
             return false;
         }
     }
-
 }
 ?>

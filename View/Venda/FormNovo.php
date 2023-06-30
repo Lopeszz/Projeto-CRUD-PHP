@@ -11,7 +11,6 @@
 <body>
     <h1>Novo</h1>
     <form action="AbrirVenda.php" method="post">
-
         <label for="id_cliente">Cliente:</label>
         <select name="id_cliente" id="id_cliente">
             <option value="null"></option>

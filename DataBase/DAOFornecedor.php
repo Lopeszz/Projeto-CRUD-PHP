@@ -38,7 +38,7 @@ class DAOFornecedor
     public function exclui($id)
     {
         $sql = 'DELETE from Fornecedor where id_Fornecedor = ?;';
-        
+
         $pst = conexao::getPreparedStatement($sql);
         $pst->bindValue(1, $id);
         if ($pst->execute()) {

@@ -49,14 +49,11 @@
                     <button>Excluir</button>
                 </form>
             </td>
-
             <?php
             echo '</tr>';
         }
         ?>
-
     </table>
-    <br>
 </body>
 
 </html>

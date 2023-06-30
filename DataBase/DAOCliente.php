@@ -39,7 +39,7 @@ class DAOCliente
     public function exclui($id)
     {
         $sql = 'DELETE from cliente where id_cliente = ?;';
-        
+
         $pst = conexao::getPreparedStatement($sql);
         $pst->bindValue(1, $id);
         if ($pst->execute()) {

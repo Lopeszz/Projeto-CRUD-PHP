@@ -19,13 +19,12 @@
 
     session_start();
     $idvenda = $_SESSION['vendaaberta'];
-    $total_venda = $_SESSION['total_venda'];
-    
-
+    $total_venda = $_POST['total_venda'];
+    $obs = $_POST['obs'];
+    $id_metodoPagamento = $_POST['id_metodoPagamento'];
     $daoVenda = new DaoVenda();
 
-    if ($idDaVenda = $daoVenda->fecharVenda($idvenda, $total_venda)) {
-
+    if ($idDaVenda = $daoVenda->fecharVenda($idvenda, $total_venda, $obs, $id_metodoPagamento)) {
         unset($_SESSION['vendaaberta']);
         header("location: Lista.php");
     } else {

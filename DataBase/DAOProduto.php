@@ -85,7 +85,5 @@ class DAOProduto
             return false;
         }
     }
-
-
 }
 ?>

@@ -33,7 +33,7 @@ class DAOFuncionario
     public function exclui($id)
     {
         $sql = 'DELETE from funcionario where id_funcionario = ?;';
-        
+
         $pst = conexao::getPreparedStatement($sql);
         $pst->bindValue(1, $id);
         if ($pst->execute()) {
@@ -63,7 +63,5 @@ class DAOFuncionario
             return false;
         }
     }
-
-
 }
 ?>
