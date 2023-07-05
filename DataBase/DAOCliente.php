@@ -76,7 +76,16 @@ class DAOCliente
             return false;
         }
     }
-
-
+    public function procuraUm(Cliente $cliente)
+    {
+        $lista = [];
+        $pst = conexao::getPreparedStatement('select usuario, senha from cliente where usuario = ?;');
+        $pst->bindValue(1, $cliente->getUsuario());
+        $pst->execute();
+        $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($lista);
+        return $lista;
+        
+    }
 }
 ?>

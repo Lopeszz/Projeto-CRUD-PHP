@@ -9,8 +9,10 @@
 </head>
 
 <?php
+define('BASE', $_SERVER['DOCUMENT_ROOT'] . '/macaco');
 define('HOST', $_SERVER['HTTP_HOST']);
 define('FOLDER', 'macaco');
+require_once BASE . '/View\Login\CheckLogin.php';
 ?>
 
 <body>
@@ -44,6 +46,13 @@ define('FOLDER', 'macaco');
 
     echo '<a href="http://' . HOST . '/' . FOLDER . '/View/Venda/FormNovo.php" style="text-decoration:none"><button>Cadastrar</button></a><br>';
     echo '<a href="http://' . HOST . '/' . FOLDER . '/View/Venda/Lista.php" style="text-decoration:none"><button>Lista</button></a>';
+    ?>
+
+    <h1>Menu Login</h1>
+    <?php
+
+    echo '<a href="http://' . HOST . '/' . FOLDER . '/View/Login/FormLogin.php" style="text-decoration:none"><button>Logar</button></a><br>';
+    echo '<a href="http://' . HOST . '/' . FOLDER . '/View/Login/Logout.php" style="text-decoration:none"><button>Logout</button></a>';
     ?>
 </body>
 
