@@ -83,7 +83,6 @@ class DAOCliente
         $pst->bindValue(1, $cliente->getUsuario());
         $pst->execute();
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($lista);
         return $lista;
         
     }
