@@ -16,7 +16,7 @@
             <th>nome</th>
             <th>descricao</th>
             <th>preco</th>
-            <th>qtd_estoque</th>
+            <th>qtd</th>
             <th>fornecedor_id</th>
         </tr>
 
@@ -35,7 +35,7 @@
             echo '<td>' . $produto['nome'] . '</td>';
             echo '<td>' . $produto['descricao'] . '</td>';
             echo '<td>' . $produto['preco'] . '</td>';
-            echo '<td>' . $produto['qtd_estoque'] . '</td>';
+            echo '<td>' . $produto['qtd'] . '</td>';
             echo '<td>' . $produto['fornecedor_id'] . '</td>';
             ?>
             <td>
@@ -50,7 +50,7 @@
                     <input type="hidden" name="nome" id="nome" value="<?= $produto['nome'] ?>">
                     <input type="hidden" name="descricao" id="descricao" value="<?= $produto['descricao'] ?>">
                     <input type="hidden" name="preco" id="preco" value="<?= $produto['preco'] ?>">
-                    <input type="hidden" name="qtd_estoque" id="qtd_estoque" value="<?= $produto['qtd_estoque'] ?>">
+                    <input type="hidden" name="qtd" id="qtd" value="<?= $produto['qtd'] ?>">
                     <input type="hidden" name="fornecedor_id" id="fornecedor_id" value="<?= $produto['fornecedor_id'] ?>">
                     <button>Editar</button>
                 </form>

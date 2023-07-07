@@ -71,9 +71,10 @@ CREATE TABLE produto (
   nome varchar(400),
   descricao varchar(400),
   preco decimal (10,2),
-  qtd_estoque integer,
+  qtd integer,
   fornecedor_id integer
 );
+
 
 create table grupodoproduto(
 	id_GrupodoProduto integer not null auto_increment primary key,
@@ -142,6 +143,7 @@ VALUES
 ('Rafaela Costa', '444.555.666-77', 'rafaela@example.com', 'rafaelacosta', 'senha456', '987654321', '54321-876', 'Rua F', 789, 'Loja 321', 'Centro', 'São Paulo', 'SP', 'Usuário'),
 ('Gabriel Silva', '555.666.777-88', 'gabriel@example.com', 'gabrielsilva', 'senha789', '987654321', '12345-678', 'Rua G', 456, 'Apto 987', 'Centro', 'São Paulo', 'SP', 'Usuário');
 
+
 -- Inserções na tabela funcionario
 INSERT INTO funcionario (nome, cpf, email, usuario, senha, salario, celular, nivel_acesso)
 VALUES
@@ -161,7 +163,7 @@ VALUES
 ('Fornecedor MNO', '67.890.123/0001-05', 'fornecedor@mno.com', 'fornecedormno', 'senha456', '987654321', '12345-678', 'Rua L', 123, 'Apto 123', 'Centro', 'São Paulo', 'SP');
 
 -- Inserções na tabela produto
-INSERT INTO produto (nome, descricao, preco, qtd_estoque, fornecedor_id)
+INSERT INTO produto (nome, descricao, preco, qtd, fornecedor_id)
 VALUES
 ('Produto B', 'Descrição do Produto B', 15.99, 50, 1),
 ('Produto C', 'Descrição do Produto C', 20.50, 80, 2),
@@ -195,3 +197,20 @@ VALUES
 (2, 3, 5, 43.75),
 (3, 4, 1, 12.99),
 (4, 5, 4, 79.96);
+
+
+DELIMITER //
+
+CREATE TRIGGER trigger_atualiza_estoque
+AFTER INSERT ON itemvenda
+FOR EACH ROW
+BEGIN
+    UPDATE produto
+    SET qtd = qtd - NEW.qtd
+    WHERE id_produto = NEW.produto_id;
+END //
+
+DELIMITER ;
+
+
+drop trigger trigger_atualiza_estoque;

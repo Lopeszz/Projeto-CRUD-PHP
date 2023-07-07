@@ -24,8 +24,8 @@
         <input type="text" name="preco" id="preco">
         <br>
 
-        <label for="qtd_estoque">Quantidade em Estoque:</label>
-        <input type="text" name="qtd_estoque" id="qtd_estoque">
+        <label for="qtd">Quantidade em Estoque:</label>
+        <input type="text" name="qtd" id="qtd">
         <br>
 
         <label for="fornecedor_id">ID do Fornecedor:</label>

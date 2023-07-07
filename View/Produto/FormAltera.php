@@ -13,7 +13,7 @@ $id_produto = $_POST['id_produto'];
 $nome = $_POST['nome'];
 $descricao = $_POST['descricao'];
 $preco = $_POST['preco'];
-$qtd_estoque = $_POST['qtd_estoque'];
+$qtd = $_POST['qtd'];
 $fornecedor_id = $_POST['fornecedor_id'];
 ?>
 
@@ -35,8 +35,8 @@ $fornecedor_id = $_POST['fornecedor_id'];
         <input type="text" name="preco" id="preco" value="<?= $preco ?>">
         <br>
 
-        <label for="qtd_estoque">Qtd_estoque:</label>
-        <input type="text" name="qtd_estoque" id="qtd_estoque" value="<?= $qtd_estoque ?>">
+        <label for="qtd">qtd:</label>
+        <input type="text" name="qtd" id="qtd" value="<?= $qtd ?>">
         <br>
 
         <label for="fornecedor_id">Fornecedor:</label>

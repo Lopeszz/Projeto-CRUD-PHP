@@ -10,17 +10,17 @@ class Produto
 
     private $preco;
 
-    private $qtd_estoque;
+    private $qtd;
 
 	private $fornecedor_id;
 
 
-    public function __construct($nome, $descricao, $preco, $qtd_estoque, $fornecedor_id = null, $id_produto = null,)
+    public function __construct($nome, $descricao, $preco, $qtd, $fornecedor_id = null, $id_produto = null,)
     {
         $this->nome = $nome;
         $this->descricao = $descricao;
         $this->preco = $preco;
-        $this->qtd_estoque = $qtd_estoque;
+        $this->qtd = $qtd;
 		$this->fornecedor_id = $fornecedor_id;
 		$this->id_produto = $id_produto;
     }
@@ -93,16 +93,16 @@ class Produto
 	/**
 	 * @return mixed
 	 */
-	public function getQtd_estoque() {
-		return $this->qtd_estoque;
+	public function getqtd() {
+		return $this->qtd;
 	}
 	
 	/**
-	 * @param mixed $qtd_estoque 
+	 * @param mixed $qtd 
 	 * @return self
 	 */
-	public function setQtd_estoque($qtd_estoque): self {
-		$this->qtd_estoque = $qtd_estoque;
+	public function setqtd($qtd): self {
+		$this->qtd = $qtd;
 		return $this;
 	}
 

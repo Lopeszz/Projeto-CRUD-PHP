@@ -9,7 +9,7 @@ $id_produto = $_POST['id_produto'];
 $nome = $_POST['nome'];
 $descricao = $_POST['descricao'];
 $preco = $_POST['preco'];
-$qtd_estoque = $_POST['qtd_estoque'];
+$qtd = $_POST['qtd'];
 $fornecedor_id = $_POST['fornecedor_id'];
 
 
@@ -17,7 +17,7 @@ $produto = new Produto(
     $nome,
     $descricao,
     $preco,
-    $qtd_estoque,
+    $qtd,
     $fornecedor_id,
     $id_produto
 );
