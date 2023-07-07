@@ -212,5 +212,15 @@ END //
 
 DELIMITER ;
 
+DELIMITER //
 
-drop trigger trigger_atualiza_estoque;
+CREATE TRIGGER trigger_atualiza_estoque_apagar
+AFTER DELETE ON itemvenda
+FOR EACH ROW
+BEGIN
+    UPDATE produto
+    SET qtd = qtd + OLD.qtd
+    WHERE id_produto = OLD.produto_id;
+END //
+
+DELIMITER ;,

@@ -44,6 +44,7 @@
                 <th>PRODUTO</th>
                 <th>QUANTIDADE</th>
                 <th>SUBTOTAL</th>
+                <th>EXCLUIR</th>
             </tr>
             <?php
             require_once BASE . '/Database/DAOItemVenda.php';
@@ -66,8 +67,16 @@
                     echo '<td>' . $registro['qtd'] . '</td>';
                     $subtotal = $valorProduto * $registro['qtd'];
                     echo '<td>' . $subtotal . '</td>';
-                    echo '</tr>';
 
+                    ?>
+                    <td>
+                        <form action="deleteitemvenda.php" method="post">
+                            <input type="hidden" name="id" id="id" value="<?= $registro['id_itemvenda'] ?>">
+                            <button>Excluir</button>
+                        </form>
+                    </td>
+                    <?php
+                    echo '</tr>';
                     $total += $subtotal;
                 }
             }
@@ -95,6 +104,7 @@
                 $daoConexao = new DAOMetodoPagamento();
                 $lista = $daoConexao->listaTodos();
 
+
                 foreach ($lista as $MetodoPagamento) {
                     $id = $MetodoPagamento['id_metodoPagamento'];
                     $nome = $MetodoPagamento['nome'];
@@ -102,6 +112,7 @@
                     </option>";
                 }
                 ?>
+
             </select>
 
             <label for="obs">Observações</label>
