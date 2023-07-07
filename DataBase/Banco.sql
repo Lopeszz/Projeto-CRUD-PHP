@@ -119,20 +119,21 @@ add constraint FK_licitacaoID FOREIGN KEY (licitacao_id) REFERENCES licitacao(id
 add constraint FK_ProdutoIDdoItemLicitacao FOREIGN KEY (produto_id) REFERENCES produto(id_produto);
 	
 ALTER TABLE produto
-add constraint FK_FornecedorID FOREIGN KEY (fornecedor_id) REFERENCES fornecedor(id_fornecedor);
+ADD CONSTRAINT FK_FornecedorID FOREIGN KEY (fornecedor_id) REFERENCES fornecedor(id_fornecedor) ON DELETE CASCADE;
 
 ALTER TABLE subgrupodoproduto
-add constraint FK_Grupodoproduto FOREIGN KEY (grupodoproduto_id) references grupodoproduto(id_grupodoproduto),
-add constraint FK_ProdutoIDdoSubGrupo FOREIGN KEY (produto_id) references produto(id_produto);
+ADD CONSTRAINT FK_Grupodoproduto FOREIGN KEY (grupodoproduto_id) REFERENCES grupodoproduto(id_grupodoproduto) ON DELETE CASCADE,
+ADD CONSTRAINT FK_ProdutoIDdoSubGrupo FOREIGN KEY (produto_id) REFERENCES produto(id_produto) ON DELETE CASCADE;
 
 ALTER TABLE venda
-add constraint FK_MetodoPagamenetoDaVenda FOREIGN KEY (MetodoPagamento_id) REFERENCES MetodoPagamento(id_metodoPagamento),
-add constraint FK_ClienteID FOREIGN KEY (cliente_id) REFERENCES cliente(id_cliente),
-add constraint FK_FuncionarioIDdaVenda FOREIGN KEY (funcionario_id) REFERENCES funcionario(id_funcionario);
+ADD CONSTRAINT FK_MetodoPagamenetoDaVenda FOREIGN KEY (MetodoPagamento_id) REFERENCES MetodoPagamento(id_metodoPagamento) ON DELETE CASCADE,
+ADD CONSTRAINT FK_ClienteID FOREIGN KEY (cliente_id) REFERENCES cliente(id_cliente) ON DELETE CASCADE,
+ADD CONSTRAINT FK_FuncionarioIDdaVenda FOREIGN KEY (funcionario_id) REFERENCES funcionario(id_funcionario) ON DELETE CASCADE;
 
 ALTER TABLE itemvenda
-add constraint FK_VendaID FOREIGN KEY (venda_id) REFERENCES venda(id_venda),
-add constraint FK_ProdutoIDdoItemVenda FOREIGN KEY (produto_id) REFERENCES produto(id_produto);
+ADD CONSTRAINT FK_VendaID FOREIGN KEY (venda_id) REFERENCES venda(id_venda) ON DELETE CASCADE,
+ADD CONSTRAINT FK_ProdutoIDdoItemVenda FOREIGN KEY (produto_id) REFERENCES produto(id_produto) ON DELETE CASCADE;
+
 
 -- Inserções na tabela cliente
 INSERT INTO cliente (nome, cpf, email, usuario, senha, celular, cep, rua, numero, complemento, bairro, cidade, estado, nivel_acesso)
