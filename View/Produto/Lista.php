@@ -18,6 +18,7 @@
             <th>preco</th>
             <th>qtd</th>
             <th>fornecedor_id</th>
+            <th colspan="2">Ação</th>
         </tr>
 
         <?php

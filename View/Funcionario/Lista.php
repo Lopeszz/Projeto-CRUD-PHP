@@ -21,6 +21,7 @@
             <th>salario</th>
             <th>celular</th>
             <th>nivel_acesso</th>
+            <th colspan="2">Ação</th>
         </tr>
 
         <?php

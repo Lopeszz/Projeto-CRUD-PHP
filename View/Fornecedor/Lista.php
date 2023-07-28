@@ -26,7 +26,7 @@
             <th>bairro</th>
             <th>cidade</th>
             <th>estado</th>
-            <th>Ação</th>
+            <th colspan="2">Ação</th>
         </tr>
 
         <?php

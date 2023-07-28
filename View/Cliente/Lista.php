@@ -27,6 +27,7 @@
             <th>cidade</th>
             <th>estado</th>
             <th>nivel_acesso</th>
+            <th colspan="2">Ação</th>
         </tr>
 
         <?php

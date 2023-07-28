@@ -44,7 +44,7 @@
                 <th>PRODUTO</th>
                 <th>QUANTIDADE</th>
                 <th>SUBTOTAL</th>
-                <th>EXCLUIR</th>
+                <th>Ação</th>
             </tr>
             <?php
             require_once BASE . '/Database/DAOItemVenda.php';

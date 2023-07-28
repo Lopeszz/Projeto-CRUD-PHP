@@ -12,14 +12,15 @@
     <h1>Listagem de Vendas</h1>
     <table border="1">
         <tr>
-            <th>id_venda</th>
-            <th>situacao</th>
-            <th>observacoes</th>
-            <th>data_venda</th>
-            <th>total_venda</th>
-            <th>funcionario_id</th>
-            <th>cliente_id</th>
-            <th>metodoPagamento_id</th>
+            <th>Id_venda</th>
+            <th>Situacao</th>
+            <th>Observacoes</th>
+            <th>Data_venda</th>
+            <th>Total_venda</th>
+            <th>Funcionario_id</th>
+            <th>Cliente_id</th>
+            <th>MetodoPagamento_id</th>
+            <th>Ação</th>
         </tr>
         <?php
 
