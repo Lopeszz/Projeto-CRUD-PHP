@@ -6,7 +6,7 @@ class conexao
 
     private static $usuario = 'root';
 
-    private static $senha = 'root';
+    private static $senha = '123456';
 
     private static $conexao = null;
 
