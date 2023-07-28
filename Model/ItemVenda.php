@@ -7,11 +7,7 @@ class ItemVenda
     private $venda_id;
     private $produto_id;
     private $qtd;
-
     private $subtotal;
-
-
-
 
     public function __construct($id_ItemVenda = null, $venda_id = null, $produto_id = null, $qtd, $subtotal)
     {

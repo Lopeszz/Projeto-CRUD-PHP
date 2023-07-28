@@ -18,7 +18,7 @@
 
             define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
             require_once BASE . '/Model/Cliente.php';
-            require_once BASE . '/Database/DAOCliente.php'; 
+            require_once BASE . '/Database/DAOCliente.php';
             require_once BASE . '/Database/Conexao.php';
 
             $daoConexao = new DAOCliente();
@@ -31,6 +31,29 @@
             }
             ?>
         </select>
+
+        <br>
+        <label for="id_funcionario">Funcionario:</label>
+        <select name="id_funcionario" id="id_funcionario">
+            <option value="null"></option>
+            <?php
+
+            define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\viniciusv');
+            require_once BASE . '/Model/Funcionario.php';
+            require_once BASE . '/Database/DAOFuncionario.php';
+            require_once BASE . '/Database/Conexao.php';
+
+            $daoConexao = new DAOFuncionario();
+            $lista = $daoConexao->listaTodos();
+
+            foreach ($lista as $Funcionario) {
+                $id = $Funcionario['id_funcionario'];
+                $nome = $Funcionario['nome'];
+                echo "<option value='$id'>$nome</option>";
+            }
+            ?>
+        </select>
+        <br>
 
         <button type="submit">Abrir Venda</button>
 

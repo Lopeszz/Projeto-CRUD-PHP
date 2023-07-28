@@ -18,8 +18,9 @@
     require_once BASE . '/Database/Conexao.php';
 
     $id_cliente = $_POST['id_cliente'];
+    $id_funcionario = $_POST['id_funcionario'];
 
-    $venda = new Venda(null, null, null, null, 0, null, $id_cliente, null);
+    $venda = new Venda(null, null, null, null, 0, $id_funcionario, $id_cliente, null);
 
     $daoVenda = new DaoVenda();
 
