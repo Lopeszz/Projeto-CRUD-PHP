@@ -36,13 +36,14 @@
         $estado = $_POST['estado'];
         $nivel_acesso = $_POST['nivel_acesso'];
 
-        $senha = password_hash($senha,PASSWORD_DEFAULT);
+        $senha = password_hash($senha, PASSWORD_DEFAULT);
 
         $Cliente = new Cliente($nome, $cpf, $email, $usuario, $senha, $celular, $cep, $rua, $numero, $complemento, $bairro, $cidade, $estado, $nivel_acesso);
         $daoCliente = new DAOCliente();
 
         if ($daoCliente->inclui($Cliente)) {
             echo 'Salvo';
+            header('Location: http://localhost/macaco/View/Cliente/Lista.php');
         } else {
             echo 'Not save.';
         }
@@ -50,7 +51,7 @@
         echo 'Sai daqui otário';
     }
 
-    ?>
+    ?>  
     <h1>Lista</h1>
     <button><a href="Lista.php" target="_blank" style="text-decoration:none"> Listar Clientes</a></button>
 

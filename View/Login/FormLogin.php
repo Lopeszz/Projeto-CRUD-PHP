@@ -13,48 +13,60 @@
             background-color: #f2f2f2;
         }
 
-        .login {
-            width: 100%;
-            height: 100vh;
+        .login-container {
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-card h2 {
+            text-align: center;
+        }
+
+        .login-button {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .login-button:hover {
+            background-color: #e55000;
         }
     </style>
 </head>
 
 <body>
-    <div class="login">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 offset-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="login.php" method="post">
-                                <div>
-                                    <div class="mb-4">
-                                        <label for="usuario" class="form-label">Usuário</label>
-                                        <input type="usuario" name="usuario" id="usuario" class="form-control">
-
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="mb-4">
-                                        <label for="password" class="form-label">Senha</label>
-                                        <input type="password" name="password" id="password" class="form-control">
-
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="mb-4">
-                                        <button type="submit" class="btn btn-primary">Enviar</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Login</h2>
+            <form action="login.php" method="post">
+                <div class="mb-4">
+                    <label for="usuario" class="form-label">Usuário</label>
+                    <input type="usuario" name="usuario" id="usuario" class="form-control">
                 </div>
-            </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+                <div class="mb-4">
+                    <button class="login-button">Logar</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>

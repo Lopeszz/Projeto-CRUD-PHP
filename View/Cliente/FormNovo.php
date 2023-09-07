@@ -1,3 +1,9 @@
+<?php
+define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
+require_once BASE . '/View/Login/CheckLogin.php';
+require_once BASE . '/View\Header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,10 +12,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="stylesheet" href=".\..\..\Css\style.css">
+
 </head>
 
 <body>
-    <h1>Novo</h1>
+    <h1>Novo Cliente</h1>
     <form action="Novo.php" method="post">
 
         <label for="nome">Nome:</label>
@@ -100,7 +108,7 @@
         </select>
         <br>
 
-        <button >Cadastrar</button>
+        <button>Cadastrar</button>
         <button type="reset">Limpar</button>
 
     </form>

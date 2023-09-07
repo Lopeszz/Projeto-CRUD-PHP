@@ -11,7 +11,7 @@ $daoVenda = new DAOVenda();
 $id = $_POST['id'];
 
 if ($daoVenda->exclui($id)) {
-    header('Location: http://localhost/macaco/View/Venda/Lista.php');
+    header('Location: localhost/aula03-03/visao/produto/listaProduto.php');
 } else {
     echo 'Erro ao excluir Venda.';
 }

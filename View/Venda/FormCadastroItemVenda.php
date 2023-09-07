@@ -70,7 +70,7 @@
 
                     ?>
                     <td>
-                        <form action="deleteitemvenda.php" method="post">
+                        <form action="DeleteItemVenda.php" method="post">
                             <input type="hidden" name="id" id="id" value="<?= $registro['id_itemvenda'] ?>">
                             <button>Excluir</button>
                         </form>

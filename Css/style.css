@@ -1,0 +1,156 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  margin: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0px 30px 20px 30px;
+  font-size: 15px;
+  width: 100%;
+  min-width: max-content;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #ff6600;
+  color: #fff;
+  position: sticky;
+  top: 0px;
+}
+
+.table-wrapper {
+  max-height: 400px;
+  overflow-y: scroll;
+  margin-bottom: 50px;
+  width: 99%;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 30%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #ff6600;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+button {
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e55000;
+}
+
+a {
+  color: #ff6600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background-color: #ff6600;
+  color: #fff;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  width: auto;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  margin: 0px;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.menu i {
+  margin-right: 5px;
+}
+
+.menu a:hover {
+  color: #e55000;
+}
+
+.submenu-content {
+  display: none;
+  position: absolute;
+  background-color: #ff6600;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.submenu-content li {
+  padding: 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.submenu-content i {
+  margin-right: 10px;
+}
+
+.submenu:hover .submenu-content {
+  display: block;
+}
+.img {
+  width: 500px;
+}
+h1 {
+  margin-left: 5px;
+}
