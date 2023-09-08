@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="full-height">
 
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body>
-    <div class="content">
+<body class="flex-column">
+    <div class="content flex-grow-1">
         <footer>
             <section>
                 <h3>Contato</h3>
@@ -24,6 +24,7 @@
                 <h3>Siga-nos</h3>
                 <ul>
                     <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twiiter"></i> Twiiter</a></li>
                     <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
                 </ul>
             </section>

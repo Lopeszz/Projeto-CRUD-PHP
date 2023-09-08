@@ -13,9 +13,23 @@ require_once BASE . '/View/Header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Loja de Roupas</title>
     <link rel="stylesheet" href="./Css/style.css">
+    <link rel="stylesheet" href="./Css/menu.css">
+    <style>
+        footer {
+            position: static;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+        }
+    </style>
 </head>
 
-<body>
+<body class="flex-column">
     <main>
         <section>
             <h1>Bem-vindo à Minha Loja de Roupas</h1>
@@ -50,9 +64,27 @@ require_once BASE . '/View/Header.php';
         </section>
     </main>
 
-    <?php
-    require_once BASE . '/View/Footer.php';
-    ?>
+    <div class="content flex-grow-1">
+        <footer>
+            <section>
+                <h3>Contato</h3>
+                <address>
+                    <p>Rua da Loja, 123</p>
+                </address>
+                <p>Email: contato@minhalojaderoupas.com</p>
+                <p>Telefone: (123) 456-7890</p>
+            </section>
+
+            <section>
+                <h3>Siga-nos</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twiiter"></i> Twiiter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </section>
+        </footer>
+    </div>
 </body>
 
 </html>

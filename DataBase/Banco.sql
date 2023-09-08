@@ -7,7 +7,7 @@ CREATE TABLE cliente (
   nome varchar(400),
   cpf varchar (20),
   email varchar(400),
-  usuario varchar(400),
+  usuario varchar(400) unique,
   senha varchar (500),
   celular varchar(400),
   cep varchar(400),
@@ -25,7 +25,7 @@ CREATE TABLE funcionario (
   nome varchar(400),
   cpf varchar (20),
   email varchar(50),
-  usuario varchar(400),
+  usuario varchar(400) unique,
   senha varchar(400),
   salario varchar(50),
   celular varchar(400),
@@ -36,7 +36,7 @@ CREATE TABLE fornecedor (
   nome varchar(400),
   cnpj varchar (100),
   email varchar(400),
-  usuario varchar(400),
+  usuario varchar(400) unique,
   senha varchar(400),
   celular varchar(400),
   cep varchar(400),
@@ -282,4 +282,4 @@ GROUP BY f.id_fornecedor
 ORDER BY Total_de_Licitacoes DESC
 LIMIT 1;
 -- select * from view_fornecedores_mais_licitacoes;
-select * from cliente;
+
