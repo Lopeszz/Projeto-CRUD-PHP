@@ -1,3 +1,8 @@
+<?php
+define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
+require_once BASE . '/View/Login/CheckLogin.php';
+require_once BASE . '/View\Header.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,6 +11,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Funcionario</title>
+    <link rel="stylesheet" href=".\..\..\Css\style.css">
+
 </head>
 
 <?php
@@ -45,7 +52,6 @@ $fornecedor_id = $_POST['fornecedor_id'];
 
             <?php
 
-            define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
             require_once BASE . '/Model/Fornecedor.php';
             require_once BASE . '/Database/DAOFornecedor.php';
             require_once BASE . '/Database/Conexao.php';

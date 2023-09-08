@@ -46,6 +46,8 @@ th {
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
+input[type="file"],
 select {
   width: 30%;
   padding: 10px;

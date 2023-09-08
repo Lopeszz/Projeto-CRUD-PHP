@@ -1,3 +1,8 @@
+<?php
+define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
+require_once BASE . '/View/Login/CheckLogin.php';
+require_once BASE . '/View\Header.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 

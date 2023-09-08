@@ -42,6 +42,7 @@
 
         if ($daoFornecedor->inclui($Fornecedor)) {
             echo 'Salvo';
+            header('Location: http://localhost/macaco/View/Fornecedor/Lista.php');
         } else {
             echo 'Not save.';
         }

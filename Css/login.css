@@ -1,0 +1,53 @@
+body {
+  background-color: #f2f2f2;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-card h2 {
+  text-align: center;
+}
+
+.login-button,
+.signup-button {
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  display: block;
+  /* Garante que os botões ocupem toda a largura */
+  margin-bottom: 10px;
+  /* Espaçamento inferior entre os botões */
+}
+
+.login-button:hover {
+  background-color: #e55000;
+}
+
+.signup-button,
+a {
+  text-align: center;
+  text-decoration: none;
+}
+
+.signup-button:hover {
+  background-color: #e55000;
+}

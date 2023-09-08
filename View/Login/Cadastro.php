@@ -15,8 +15,8 @@
     <?php
     define('BASE', $_SERVER['DOCUMENT_ROOT'] . '/macaco');
 
-    require_once BASE . '/Model/Funcionario.php';
-    require_once BASE . '/Database/DAOFuncionario.php';
+    require_once BASE . '/Model/Cliente.php';
+    require_once BASE . '/Database/DAOCliente.php';
     require_once BASE . '/Database/Conexao.php';
 
     if (isset($_POST['nome'])) {
@@ -26,29 +26,24 @@
         $email = $_POST['email'];
         $usuario = $_POST['usuario'];
         $senha = $_POST['senha'];
-        $salario = $_POST['salario'];
         $celular = $_POST['celular'];
+        $cep = $_POST['cep'];
+        $rua = $_POST['rua'];
+        $numero = $_POST['numero'];
+        $complemento = $_POST['complemento'];
+        $bairro = $_POST['bairro'];
+        $cidade = $_POST['cidade'];
+        $estado = $_POST['estado'];
         $nivel_acesso = $_POST['nivel_acesso'];
 
         $senha = password_hash($senha, PASSWORD_DEFAULT);
 
+        $Cliente = new Cliente($nome, $cpf, $email, $usuario, $senha, $celular, $cep, $rua, $numero, $complemento, $bairro, $cidade, $estado, $nivel_acesso);
+        $daoCliente = new DAOCliente();
 
-        $Funcionario = new Funcionario(
-            $nome,
-            $cpf,
-            $email,
-            $usuario,
-            $senha,
-            $salario,
-            $celular,
-            $nivel_acesso
-        );
-        $daoFuncionario = new DAOFuncionario();
-
-        if ($daoFuncionario->inclui($Funcionario)) {
+        if ($daoCliente->inclui($Cliente)) {
             echo 'Salvo';
-            header('Location: http://localhost/macaco/View/Funcionario/Lista.php');
-
+            header('Location: http://localhost/macaco\View\Login\FormLogin.php');
         } else {
             echo 'Not save.';
         }
@@ -58,7 +53,7 @@
 
     ?>
     <h1>Lista</h1>
-    <button><a href="Lista.php" target="_blank" style="text-decoration:none">Listar Funcionarios</a></button>
+    <button><a href="Lista.php" target="_blank" style="text-decoration:none"> Listar Clientes</a></button>
 
 </body>
 

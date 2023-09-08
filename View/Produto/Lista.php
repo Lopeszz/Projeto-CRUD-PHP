@@ -28,6 +28,7 @@ require_once BASE . '/View\Header.php';
                 <th>preco</th>
                 <th>qtd</th>
                 <th>fornecedor_id</th>
+                <th>id_imagem</th>
                 <th colspan="2">Ação</th>
             </tr>
 
@@ -47,6 +48,7 @@ require_once BASE . '/View\Header.php';
                 echo '<td>' . $produto['preco'] . '</td>';
                 echo '<td>' . $produto['qtd'] . '</td>';
                 echo '<td>' . $produto['fornecedor_id'] . '</td>';
+                echo '<td>' . $produto['id_imagem'] . '</td>';
                 ?>
                 <td>
                     <form action="delete.php" method="post">
@@ -63,6 +65,7 @@ require_once BASE . '/View\Header.php';
                         <input type="hidden" name="qtd" id="qtd" value="<?= $produto['qtd'] ?>">
                         <input type="hidden" name="fornecedor_id" id="fornecedor_id"
                             value="<?= $produto['fornecedor_id'] ?>">
+                        <input type="hidden" name="id_imagem" id="id_imagem" value="<?= $produto['id_imagem'] ?>">
                         <button>Editar</button>
                     </form>
                 </td>

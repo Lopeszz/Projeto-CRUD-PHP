@@ -9,24 +9,26 @@
 </head>
 
 <body>
-    <footer>
-        <section>
-            <h3>Contato</h3>
-            <address>
-                <p>Rua da Loja, 123</p>
-            </address>
-            <p>Email: contato@minhalojaderoupas.com</p>
-            <p>Telefone: (123) 456-7890</p>
-        </section>
+    <div class="content">
+        <footer>
+            <section>
+                <h3>Contato</h3>
+                <address>
+                    <p>Rua da Loja, 123</p>
+                </address>
+                <p>Email: contato@minhalojaderoupas.com</p>
+                <p>Telefone: (123) 456-7890</p>
+            </section>
 
-        <section>
-            <h3>Siga-nos</h3>
-            <ul>
-                <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-            </ul>
-        </section>
-    </footer>
+            <section>
+                <h3>Siga-nos</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </section>
+        </footer>
+    </div>
 </body>
 
 </html>

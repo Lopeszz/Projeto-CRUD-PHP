@@ -72,7 +72,8 @@ CREATE TABLE produto (
   descricao varchar(400),
   preco decimal (10,2),
   qtd integer,
-  fornecedor_id integer
+  fornecedor_id integer,
+  id_imagem varchar(1000)
 );
 
 
@@ -111,12 +112,12 @@ CREATE TABLE MetodoPagamento(
 );
 
 ALTER TABLE licitacao
-add constraint FK_FuncionarioIDdaLicitacao FOREIGN KEY (funcionario_id) REFERENCES funcionario(id_funcionario),
-add constraint FK_MetodoPagamenetoDaLicitacao FOREIGN KEY (MetodoPagamento_id) REFERENCES MetodoPagamento(id_metodoPagamento);
+add constraint FK_FuncionarioIDdaLicitacao FOREIGN KEY (funcionario_id) REFERENCES funcionario(id_funcionario) ON DELETE CASCADE,
+add constraint FK_MetodoPagamenetoDaLicitacao FOREIGN KEY (MetodoPagamento_id) REFERENCES MetodoPagamento(id_metodoPagamento) ON DELETE CASCADE;
 
 ALTER TABLE itemlicitacao
-add constraint FK_licitacaoID FOREIGN KEY (licitacao_id) REFERENCES licitacao(id_licitacao),
-add constraint FK_ProdutoIDdoItemLicitacao FOREIGN KEY (produto_id) REFERENCES produto(id_produto);
+add constraint FK_licitacaoID FOREIGN KEY (licitacao_id) REFERENCES licitacao(id_licitacao) ON DELETE CASCADE,
+add constraint FK_ProdutoIDdoItemLicitacao FOREIGN KEY (produto_id) REFERENCES produto(id_produto) ON DELETE CASCADE;
 	
 ALTER TABLE produto
 ADD CONSTRAINT FK_FornecedorID FOREIGN KEY (fornecedor_id) REFERENCES fornecedor(id_fornecedor) ON DELETE CASCADE;
@@ -137,7 +138,7 @@ ADD CONSTRAINT FK_ProdutoIDdoItemVenda FOREIGN KEY (produto_id) REFERENCES produ
 -- Inserções na tabela cliente
 INSERT INTO cliente (nome, cpf, email, usuario, senha, celular, cep, rua, numero, complemento, bairro, cidade, estado, nivel_acesso)
 VALUES
-('Ana Oliveira', '111.222.333-44', 'ana@example.com', 'giovani', '$2y$10$H1pZd.ARr9NZ52p7AGRPseaDriUpLlCY.Gtt2HYorYE6mStGvbEQG', '987654321', '12345-678', 'Rua C', 456, 'Apto 789', 'Centro', 'São Paulo', 'SP', 'Usuário'),
+('Ana Oliveira', '111.222.333-44', 'ana@example.com', '123', '123213121', '987654321', '12345-678', 'Rua C', 456, 'Apto 789', 'Centro', 'São Paulo', 'SP', 'Usuário'),
 ('Pedro Santos', '222.333.444-55', 'pedro@example.com', 'pedrosantos', 'senha789', '987654321', '54321-876', 'Rua D', 789, 'Loja 987', 'Centro', 'São Paulo', 'SP', 'Usuário'),
 ('Mariana Lima', '333.444.555-66', 'mariana@example.com', 'marianalima', 'senha123', '987654321', '12345-678', 'Rua E', 123, 'Apto 654', 'Centro', 'São Paulo', 'SP', 'Usuário'),
 ('Rafaela Costa', '444.555.666-77', 'rafaela@example.com', 'rafaelacosta', 'senha456', '987654321', '54321-876', 'Rua F', 789, 'Loja 321', 'Centro', 'São Paulo', 'SP', 'Usuário'),
@@ -147,7 +148,7 @@ VALUES
 -- Inserções na tabela funcionario
 INSERT INTO funcionario (nome, cpf, email, usuario, senha, salario, celular, nivel_acesso)
 VALUES
-('Juliana Ferreira', '666.777.888-99', 'juliana@example.com', 'giovani', '$2y$10$H1pZd.ARr9NZ52p7AGRPseaDriUpLlCY.Gtt2HYorYE6mStGvbEQG', '5000.00', '987654321', 'Administrador'),
+('Juliana Ferreira', '666.777.888-99', 'juliana@example.com', '1', '1', '5000.00', '987654321', 'Administrador'),
 ('Lucas Rodrigues', '777.888.999-00', 'lucas@example.com', 'lucasrodrigues', 'senha456', '4500.00', '987654321', 'Usuário'),
 ('Larissa Gomes', '888.999.000-11', 'larissa@example.com', 'larissagomes', 'senha789', '4000.00', '987654321', 'Usuário'),
 ('Diego Almeida', '999.000.111-22', 'diego@example.com', 'diegoalmeida', 'senha123', '5500.00', '987654321', 'Administrador'),
@@ -163,6 +164,7 @@ VALUES
 ('Fornecedor MNO', '67.890.123/0001-05', 'fornecedor@mno.com', 'fornecedormno', 'senha456', '987654321', '12345-678', 'Rua L', 123, 'Apto 123', 'Centro', 'São Paulo', 'SP');
 
 -- Inserções na tabela produto
+/*
 INSERT INTO produto (nome, descricao, preco, qtd, fornecedor_id)
 VALUES
 ('Produto B', 'Descrição do Produto B', 15.99, 50, 1),
@@ -170,6 +172,7 @@ VALUES
 ('Produto D', 'Descrição do Produto D', 8.75, 100, 3),
 ('Produto E', 'Descrição do Produto E', 12.99, 70, 4),
 ('Short Praia', 'Descrição do Produto F', 19.99, 0, 5);
+*/
 
 -- Inserções na tabela MetodoPagamento
 INSERT INTO MetodoPagamento (nome)
@@ -181,6 +184,7 @@ VALUES
 ('Pix');
 
 -- Inserções na tabela venda
+/*
 INSERT INTO venda (situacao, observacoes, data_venda, total_venda, funcionario_id, cliente_id, metodoPagamento_id)
 VALUES
 (1, 'Observações da venda 2', '2023-06-29', 75.99, 1, 2, 1),
@@ -197,6 +201,7 @@ VALUES
 (2, 3, 5, 43.75),
 (3, 4, 1, 12.99),
 (4, 5, 4, 79.96);
+*/
 
 -- Inserção na tabela licitacao
 INSERT INTO licitacao (fornecedor_id, funcionario_id, MetodoPagamento_id, data_licitacao, total_licitacao, observacoes)
@@ -251,7 +256,7 @@ INNER JOIN funcionario f ON v.funcionario_id = f.id_funcionario
 GROUP BY f.id_funcionario
 ORDER BY Total_de_Vendas DESC
 LIMIT 1;
-select * from view_funcionario_mais_vendeu;
+-- select * from view_funcionario_mais_vendeu;
 
 
 CREATE VIEW view_cliente_mais_comprou AS
@@ -261,14 +266,13 @@ INNER JOIN cliente c ON v.cliente_id = c.id_cliente
 GROUP BY c.id_cliente
 ORDER BY Total_de_Compras DESC
 LIMIT 1;
-select * from view_cliente_mais_comprou;
+-- select * from view_cliente_mais_comprou;
 
 CREATE VIEW view_produtos_sem_estoque AS
 SELECT p.nome AS Produto
 FROM produto p
 WHERE p.qtd = 0;
-select * from view_produtos_sem_estoque;
-
+-- select * from view_produtos_sem_estoque;
 
 CREATE VIEW view_fornecedores_mais_licitacoes AS
 SELECT f.id_fornecedor, f.nome AS Fornecedor, COUNT(l.id_licitacao) AS Total_de_Licitacoes
@@ -277,6 +281,5 @@ LEFT JOIN licitacao l ON f.id_fornecedor = l.fornecedor_id
 GROUP BY f.id_fornecedor
 ORDER BY Total_de_Licitacoes DESC
 LIMIT 1;
-select * from view_fornecedores_mais_licitacoes;
-
-
+-- select * from view_fornecedores_mais_licitacoes;
+select * from cliente;

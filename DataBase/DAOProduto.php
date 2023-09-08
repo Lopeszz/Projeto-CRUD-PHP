@@ -38,7 +38,7 @@ class DAOProduto
 
     public function inclui(Produto $Produto)
     {
-        $sql = 'INSERT INTO produto (nome,descricao,preco,qtd,fornecedor_id) values (?,?,?,?,?);';
+        $sql = 'INSERT INTO produto (nome,descricao,preco,qtd,fornecedor_id,id_imagem) values (?,?,?,?,?,?);';
         $pst = conexao::getPreparedStatement($sql);
 
         $pst->bindValue(1, $Produto->getNome());
@@ -46,6 +46,7 @@ class DAOProduto
         $pst->bindValue(3, $Produto->getPreco());
         $pst->bindValue(4, $Produto->getqtd());
         $pst->bindValue(5, $Produto->getFornecedor_id());
+        $pst->bindValue(6, $Produto->getId_imagem());
 
         if ($pst->execute()) {
             return true;
@@ -68,7 +69,7 @@ class DAOProduto
     public function altera(Produto $Produto)
     {
         $sql = 'UPDATE Produto set nome = ?, descricao = ?, preco = ?, qtd = ?, 
-        fornecedor_id = ? where id_produto = ?;';
+        fornecedor_id = ?, id_imagem = ? where id_produto = ?;';
         $pst = conexao::getPreparedStatement($sql);
         var_dump($Produto->getId_produto());
 
@@ -77,7 +78,8 @@ class DAOProduto
         $pst->bindValue(3, $Produto->getPreco());
         $pst->bindValue(4, $Produto->getqtd());
         $pst->bindValue(5, $Produto->getFornecedor_id());
-        $pst->bindValue(6, $Produto->getId_produto());
+        $pst->bindValue(6, $Produto->getId_imagem());
+        $pst->bindValue(7, $Produto->getId_produto());
 
         if ($pst->execute()) {
             return true;

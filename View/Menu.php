@@ -1,8 +1,7 @@
 <?php
-define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
+define('BASE', $_SERVER['DOCUMENT_ROOT'] . '/macaco');
 require_once BASE . '/View/Login/CheckLogin.php';
-require_once BASE . '/View\Header.php';
-
+require_once BASE . '/View/Header.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,32 +27,31 @@ require_once BASE . '/View\Header.php';
 
         <section>
             <h2>Últimos Produtos</h2>
-            <div class="product">
-                <img src="1.jpg" alt="Produto 1" class="img">
-                <h3>Produto 1</h3>
-                <p>Descrição breve do Produto 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">Saiba mais</a>
-            </div>
+            <?php
+            require_once BASE . '/Model/Produto.php';
+            require_once BASE . '/Database/DAOProduto.php';
+            require_once BASE . '/Database/Conexao.php';
 
-            <div class="product">
-                <img src="1.jpg" alt="Produto 2" class="img">
-                <h3>Produto 2</h3>
-                <p>Descrição breve do Produto 2. Nullam condimentum, sem eu rhoncus euismod, orci nisi aliquam quam.</p>
-                <a href="#">Saiba mais</a>
-            </div>
-
-            <div class="product">
-                <img src="3.jpg" alt="Produto 3" class="img">
-                <h3>Produto 3</h3>
-                <p>Descrição breve do Produto 3. Sed a tortor purus. Cras bibendum egestas lorem, id commodo massa
-                    facilisis vel.</p>
-                <a href="#">Saiba mais</a>
-            </div>
+            $daoProduto = new DAOProduto();
+            $lista = $daoProduto->listaTodos();
+            foreach ($lista as $produto) {
+                echo '<div class="product">';
+                echo '<img src="/macaco/Uploads/' . $produto['id_imagem'] . '" alt="' . $produto['nome'] . '" class="img">';
+                echo '<h3>' . $produto['nome'] . '</h3>';
+                echo '<p>' . $produto['descricao'] . '</p>';
+                echo '<a href="#">Saiba mais</a>';
+                echo '<form action="/macaco/view/venda/AbrirVendaPropria.php" method="post">';
+                echo '<input type="hidden" name="id" id="id" value="' . $produto['id_produto'] . '">';
+                echo '<button>Comprar</button>';
+                echo '</form>';
+                echo '</div>';
+            }
+            ?>
         </section>
     </main>
 
     <?php
-    require_once BASE . '/View\Footer.php';
+    require_once BASE . '/View/Footer.php';
     ?>
 </body>
 

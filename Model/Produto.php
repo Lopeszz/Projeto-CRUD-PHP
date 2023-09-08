@@ -2,42 +2,47 @@
 
 class Produto
 {
-    private $id_produto;
+	private $id_produto;
 
-    private $nome;
+	private $nome;
 
-    private $descricao;
+	private $descricao;
 
-    private $preco;
+	private $preco;
 
-    private $qtd;
+	private $qtd;
 
 	private $fornecedor_id;
 
+	private $id_imagem;
 
-    public function __construct($nome, $descricao, $preco, $qtd, $fornecedor_id = null, $id_produto = null,)
-    {
-        $this->nome = $nome;
-        $this->descricao = $descricao;
-        $this->preco = $preco;
-        $this->qtd = $qtd;
+
+	public function __construct($nome, $descricao, $preco, $qtd, $id_imagem, $fornecedor_id = null, $id_produto = null)
+	{
+		$this->nome = $nome;
+		$this->descricao = $descricao;
+		$this->preco = $preco;
+		$this->qtd = $qtd;
+		$this->id_imagem = $id_imagem;
 		$this->fornecedor_id = $fornecedor_id;
 		$this->id_produto = $id_produto;
-    }
+	}
 
 
 	/**
 	 * @return mixed
 	 */
-	public function getId_produto() {
+	public function getId_produto()
+	{
 		return $this->id_produto;
 	}
-	
+
 	/**
 	 * @param mixed $id_produto 
 	 * @return self
 	 */
-	public function setId_produto($id_produto): self {
+	public function setId_produto($id_produto): self
+	{
 		$this->id_produto = $id_produto;
 		return $this;
 	}
@@ -45,15 +50,17 @@ class Produto
 	/**
 	 * @return mixed
 	 */
-	public function getNome() {
+	public function getNome()
+	{
 		return $this->nome;
 	}
-	
+
 	/**
 	 * @param mixed $nome 
 	 * @return self
 	 */
-	public function setNome($nome): self {
+	public function setNome($nome): self
+	{
 		$this->nome = $nome;
 		return $this;
 	}
@@ -61,15 +68,17 @@ class Produto
 	/**
 	 * @return mixed
 	 */
-	public function getDescricao() {
+	public function getDescricao()
+	{
 		return $this->descricao;
 	}
-	
+
 	/**
 	 * @param mixed $descricao 
 	 * @return self
 	 */
-	public function setDescricao($descricao): self {
+	public function setDescricao($descricao): self
+	{
 		$this->descricao = $descricao;
 		return $this;
 	}
@@ -77,15 +86,17 @@ class Produto
 	/**
 	 * @return mixed
 	 */
-	public function getPreco() {
+	public function getPreco()
+	{
 		return $this->preco;
 	}
-	
+
 	/**
 	 * @param mixed $preco 
 	 * @return self
 	 */
-	public function setPreco($preco): self {
+	public function setPreco($preco): self
+	{
 		$this->preco = $preco;
 		return $this;
 	}
@@ -93,15 +104,17 @@ class Produto
 	/**
 	 * @return mixed
 	 */
-	public function getqtd() {
+	public function getqtd()
+	{
 		return $this->qtd;
 	}
-	
+
 	/**
 	 * @param mixed $qtd 
 	 * @return self
 	 */
-	public function setqtd($qtd): self {
+	public function setqtd($qtd): self
+	{
 		$this->qtd = $qtd;
 		return $this;
 	}
@@ -109,7 +122,8 @@ class Produto
 	/**
 	 * @return mixed
 	 */
-	public function getFornecedor_id() {
+	public function getFornecedor_id()
+	{
 		return $this->fornecedor_id;
 	}
 
@@ -117,8 +131,27 @@ class Produto
 	 * @param mixed $fornecedor_id 
 	 * @return self
 	 */
-	public function setFornecedor_id($fornecedor_id): self {
+	public function setFornecedor_id($fornecedor_id): self
+	{
 		$this->fornecedor_id = $fornecedor_id;
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getId_imagem()
+	{
+		return $this->id_imagem;
+	}
+
+	/**
+	 * @param mixed $id_imagem 
+	 * @return self
+	 */
+	public function setId_imagem($id_imagem): self
+	{
+		$this->id_imagem = $id_imagem;
 		return $this;
 	}
 }

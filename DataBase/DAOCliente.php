@@ -1,10 +1,20 @@
 <?php
+require_once "conexao.php";
 class DAOCliente
 {
     public function listaTodos()
     {
         $lista = [];
         $pst = conexao::getPreparedStatement('select * from cliente;');
+        $pst->execute();
+        $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
+        return $lista;
+    }
+    public function listaPorUsuario($id)
+    {
+        $lista = [];
+        $pst = conexao::getPreparedStatement('select id_cliente from Cliente where usuario = ?');
+        $pst->bindValue(1, $id);
         $pst->execute();
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
@@ -84,7 +94,7 @@ class DAOCliente
         $pst->execute();
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
-        
+
     }
 }
 ?>

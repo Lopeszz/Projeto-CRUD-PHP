@@ -9,6 +9,7 @@ class DAOFuncionario
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
+    
 
     public function inclui(Funcionario $Funcionario)
     {

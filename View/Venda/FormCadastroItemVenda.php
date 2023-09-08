@@ -1,3 +1,9 @@
+<?php
+define('BASE', $_SERVER['DOCUMENT_ROOT'] . '\macaco');
+require_once BASE . '/View/Login/CheckLogin.php';
+require_once BASE . '/View\Header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href=".\..\..\Css\style.css">
     <title>Cadastro de Venda</title>
 
 </head>
@@ -33,7 +39,7 @@
             </select><br>
 
             <label for="qtd">Quantidade</label><br>
-            <input type="number" name="qtd" id="qtd"><br>
+            <input type="text" name="qtd" id="qtd"><br>
             <button>Adicionar</button>
         </form>
         <br>
@@ -50,7 +56,6 @@
             require_once BASE . '/Database/DAOItemVenda.php';
             require_once BASE . '/Database/Conexao.php';
             $DAOItemVenda = new DAOItemVenda();
-            session_start();
 
             $lista = $DAOItemVenda->listaPorVenda($_SESSION['vendaaberta']);
             $total = 0;

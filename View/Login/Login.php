@@ -7,74 +7,108 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Importe o Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="check-circle-fill" viewBox="0 0 16 16">
-            <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-    </svg>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill"
-        viewBox="0 0 16 16">
-        <symbol id="close-circle-fill" viewBox="0 0 16 16">
-            <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-    </svg>
+        .login-card {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
+        .login-card h2 {
+            text-align: center;
+        }
+
+        .alert {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .alert svg {
+            flex-shrink: 0;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        /* Adicione uma classe de centralização de texto horizontal */
+        .text-center {
+            text-align: center;
+        }
+    </style>
 </head>
 
-<body class="p-3 m-0 border-0 bd-example m-0 border-0">
-    <?php
-    define('BASE', $_SERVER['DOCUMENT_ROOT'] . '/macaco');
-    define('HOST', $_SERVER['HTTP_HOST']);
-    define('FOLDER', 'macaco');
+<body>
+    <div class="login-card">
+        <h2>Login</h2>
+        <?php
+        define('BASE', $_SERVER['DOCUMENT_ROOT'] . '/macaco');
+        define('HOST', $_SERVER['HTTP_HOST']);
+        define('FOLDER', 'macaco');
 
-    require_once BASE . '/Model/Cliente.php';
-    require_once BASE . '/Database/DAOcliente.php';
-    require_once BASE . '/Database/Conexao.php';
+        require_once BASE . '/Model/Cliente.php';
+        require_once BASE . '/Database/DAOcliente.php';
+        require_once BASE . '/Database/Conexao.php';
 
-    $usuario = $_POST['usuario'];
-    $senha = $_POST['password'];
+        $usuario = $_POST['usuario'];
+        $senha = $_POST['password'];
 
-    $Cliente = new Cliente(null, null, null, $usuario, $senha, null, null, null, null, null, null, null, null, null);
+        $Cliente = new Cliente(null, null, null, $usuario, $senha, null, null, null, null, null, null, null, null, null);
 
-    $daoCliente = new DAOCliente();
+        $daoCliente = new DAOCliente();
 
-    $lista = $daoCliente->procuraUm($Cliente);
+        $lista = $daoCliente->procuraUm($Cliente);
 
-    if (count($lista) > 0 && password_verify($Cliente->getSenha(), $lista[0]['senha'])) {
-        session_start();
-        $_SESSION['usuario'] = $lista[0]['usuario'];
-        echo '<div id="success-message" class="alert alert-success d-flex align-items-center" role="alert">
-                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:">
-                    <use xlink:href="#check-circle-fill" />
-                </svg>
-                <div>
-                    Usuário logado com sucesso!
-                </div>
-            </div>';
-    } else {
-        echo '<div id="error-message" class="alert alert-danger d-flex align-items-center" role="alert">
-                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:">
-                    <use xlink:href="#close-circle-fill"></use>
-                </svg>
-                <div>
-                    Falha ao logar, tente novamente
-                </div>
-            </div>';
-    }
-    ?>
-
-    <script>
-        // Redirecionar após um determinado tempo
-        setTimeout(function () {
-            <?php if (count($lista) > 0 && password_verify($Cliente->getSenha(), $lista[0]['senha'])) { ?>
-                window.location.href = "http://localhost/macaco/";
-            <?php } else { ?>
-                window.location.href = "http://localhost/macaco/view/login/formlogin.php";
-            <?php } ?>
-        }, 2000); // Tempo de espera em milissegundos (neste caso, 5 segundos)
-    </script>
+        if (count($lista) > 0 && password_verify($Cliente->getSenha(), $lista[0]['senha'])) {
+            session_start();
+            $_SESSION['usuario'] = $lista[0]['usuario'];
+            echo '<div class="alert alert-success" role="alert">
+                    <i class="fas fa-check-circle" style="padding: 10px"></i>
+                    <span class="text-center">Usuário logado com sucesso!</span>
+                </div>';
+            echo '<script>
+                    setTimeout(function () {
+                        window.location.href = "http://localhost/macaco/"; // Redirecionar para o local correto após o login
+                    }, 2000);
+                  </script>';
+        } else {
+            echo '<div class="alert alert-danger" role="alert">
+                    <i class="fas fa-times-circle" style="padding: 10px"></i>
+                    <span class="text-center">Falha ao logar, tente novamente</span>
+                </div>';
+            echo '<script>
+                    setTimeout(function () {
+                        window.location.href = "http://localhost/macaco/view/login/formlogin.php"; // Redirecionar de volta para o formulário de login em caso de falha
+                    }, 2000);
+                  </script>';
+        }
+        ?>
+    </div>
 </body>
 
 </html>
