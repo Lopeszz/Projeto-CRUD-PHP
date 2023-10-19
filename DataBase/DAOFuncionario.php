@@ -9,7 +9,15 @@ class DAOFuncionario
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
-    
+    public function listaFuncionario_mais_vendeus()
+    {
+        $lista = [];
+        $pst = conexao::getPreparedStatement('select * from view_funcionario_mais_vendeu;');
+        $pst->execute();
+        $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
+        return $lista;
+    }
+
 
     public function inclui(Funcionario $Funcionario)
     {

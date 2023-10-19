@@ -9,6 +9,14 @@ class DAOProduto
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
+    public function listaProdutoComEstoque()
+    {
+        $lista = [];
+        $pst = conexao::getPreparedStatement('select * from view_produtos_com_estoque;');
+        $pst->execute();
+        $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
+        return $lista;
+    }
 
     public function obterNomeFornecedor($idFornecedor)
     {
