@@ -2,12 +2,15 @@ drop database gico;
 create database gico;
 use gico;
 
+SET SQL_SAFE_UPDATES = 0;
+
+
 CREATE TABLE cliente (
   id_cliente integer auto_increment primary key,
   nome varchar(400),
   cpf varchar (20),
   email varchar(400),
-  usuario varchar(400) unique,
+  usuario varchar(400),
   senha varchar (500),
   celular varchar(400),
   cep varchar(400),
@@ -250,14 +253,13 @@ END //
 DELIMITER ;
 
 CREATE VIEW view_funcionario_mais_vendeu AS
-SELECT f.id_funcionario, f.nome AS Funcionario, COUNT(v.id_venda) AS Quantidade_de_Vendas, SUM(v.total_venda) AS Total_de_Vendas
+SELECT f.id_funcionario, f.nome, COUNT(v.id_venda) AS Quantidade_de_Vendas, SUM(v.total_venda) AS Total_de_Vendas
 FROM venda v
 INNER JOIN funcionario f ON v.funcionario_id = f.id_funcionario
 GROUP BY f.id_funcionario
 ORDER BY Total_de_Vendas DESC
 LIMIT 1;
--- select * from view_funcionario_mais_vendeu;
-
+select * from view_funcionario_mais_vendeu;
 
 CREATE VIEW view_cliente_mais_comprou AS
 SELECT c.id_cliente, c.nome AS Cliente, SUM(v.total_venda) AS Total_de_Compras
@@ -274,6 +276,14 @@ FROM produto p
 WHERE p.qtd = 0;
 -- select * from view_produtos_sem_estoque;
 
+
+CREATE VIEW view_produtos_com_estoque AS
+SELECT *
+FROM produto p
+WHERE p.qtd > 0;
+
+select * from view_produtos_com_estoque;
+
 CREATE VIEW view_fornecedores_mais_licitacoes AS
 SELECT f.id_fornecedor, f.nome AS Fornecedor, COUNT(l.id_licitacao) AS Total_de_Licitacoes
 FROM fornecedor f
@@ -282,4 +292,77 @@ GROUP BY f.id_fornecedor
 ORDER BY Total_de_Licitacoes DESC
 LIMIT 1;
 -- select * from view_fornecedores_mais_licitacoes;
+
+DELIMITER //
+CREATE PROCEDURE ConsultarClientePorID (IN cliente_id INT)
+BEGIN
+    SELECT * FROM cliente WHERE id_cliente = cliente_id;
+END //
+DELIMITER ;
+call ConsultarClientePorID(1);
+
+DELIMITER //
+CREATE PROCEDURE ExcluirCliente (IN cliente_id INT)
+BEGIN
+    DELETE FROM cliente WHERE id_cliente = cliente_id;
+END //
+DELIMITER ;
+-- call ExcluirCliente(1);
+
+DELIMITER //
+CREATE PROCEDURE AtualizarCliente (
+    IN nome_cliente VARCHAR(400),
+    IN cpf_cliente VARCHAR(20),
+    IN email_cliente VARCHAR(400),
+    IN usuario_cliente VARCHAR(400),
+    IN senha_cliente VARCHAR(500),
+    IN celular_cliente VARCHAR(400),
+    IN cep_cliente VARCHAR(400),
+    IN rua_cliente VARCHAR(255),
+    IN numero_cliente INT,
+    IN complemento_cliente VARCHAR(200),
+    IN bairro_cliente VARCHAR(100),
+    IN cidade_cliente VARCHAR(100),
+    IN estado_cliente VARCHAR(2),
+    IN nivel_acesso_cliente VARCHAR(50),
+    IN cliente_id INT
+)
+BEGIN
+    UPDATE cliente
+    SET nome = nome_cliente, cpf = cpf_cliente, email = email_cliente, usuario = usuario_cliente, senha = senha_cliente,
+        celular = celular_cliente, cep = cep_cliente, rua = rua_cliente, numero = numero_cliente, complemento = complemento_cliente,
+        bairro = bairro_cliente, cidade = cidade_cliente, estado = estado_cliente, nivel_acesso = nivel_acesso_cliente
+    WHERE id_cliente = cliente_id;
+END //
+DELIMITER ;
+CALL AtualizarCliente('NovoNome', '98765432109', 'novoemail@example.com', 'novousuario1', 'novasenha', '987654321', '87654-321', 'Nova Rua', 456, 'Apto 2', 'Novo Bairro', 'Nova Cidade', 'RJ', 'Novo Nivel de Acesso', 1);
+
+select * from cliente;
+DELIMITER //
+CREATE PROCEDURE InserirCliente (
+    IN nome_cliente VARCHAR(400),
+    IN cpf_cliente VARCHAR(20),
+    IN email_cliente VARCHAR(400),
+    IN usuario_cliente VARCHAR(400),
+    IN senha_cliente VARCHAR(500),
+    IN celular_cliente VARCHAR(400),
+    IN cep_cliente VARCHAR(400),	
+    IN rua_cliente VARCHAR(255),
+    IN numero_cliente INT,
+    IN complemento_cliente VARCHAR(200),
+    IN bairro_cliente VARCHAR(100),
+    IN cidade_cliente VARCHAR(100),
+    IN estado_cliente VARCHAR(2),
+    IN nivel_acesso_cliente VARCHAR(50)
+)
+BEGIN
+    INSERT INTO cliente (nome, cpf, email, usuario, senha, celular, cep, rua, numero, complemento, bairro, cidade, estado, nivel_acesso)
+    VALUES (nome_cliente, cpf_cliente, email_cliente, usuario_cliente, senha_cliente, celular_cliente, cep_cliente, rua_cliente, 
+    numero_cliente, complemento_cliente, bairro_cliente, cidade_cliente, estado_cliente, nivel_acesso_cliente);
+END //
+DELIMITER ;
+
+
+
+
 

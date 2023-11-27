@@ -47,7 +47,7 @@ require_once BASE . '/View/Header.php';
             require_once BASE . '/Database/Conexao.php';
 
             $daoProduto = new DAOProduto();
-            $lista = $daoProduto->listaTodos();
+            $lista = $daoProduto->listaProdutoComEstoque();
             foreach ($lista as $produto) {
                 echo '<div class="product">';
                 echo '<img src="/macaco/Uploads/' . $produto['id_imagem'] . '" alt="' . $produto['nome'] . '" class="img">';

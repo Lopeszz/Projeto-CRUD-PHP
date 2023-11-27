@@ -86,6 +86,40 @@ require_once BASE . '/View\Header.php';
 
         </table>
     </div>
+
+    <h1>Listagem Do Funcionario Que Mais Vendeu</h1>
+    <div class="table-wrapper">
+
+        <table>
+            <tr>
+                <th>id_Funcionario</th>
+                <th>nome</th>
+                <th>Quantidade_de_Vendas</th>
+                <th>Total_de_Vendas</th>
+            </tr>
+
+            <?php
+
+            require_once BASE . '/Model/Funcionario.php';
+            require_once BASE . '/Database/DAOFuncionario.php';
+            require_once BASE . '/Database/Conexao.php';
+
+
+            $daoConexao = new DAOFuncionario();
+            $lista = $daoConexao->listaFuncionario_mais_vendeus();
+
+            foreach ($lista as $funcionario) {
+                echo '<tr>';
+                echo '<td>' . $funcionario['id_funcionario'] . '</td>';
+                echo '<td>' . $funcionario['nome'] . '</td>';
+                echo '<td>' . $funcionario['Quantidade_de_Vendas'] . '</td>';
+                echo '<td>' . $funcionario['Total_de_Vendas'] . '</td>';
+                echo '<tr>';
+            }
+            ?>
+
+        </table>
+    </div>
 </body>
 <?php
 require_once BASE . '/View\Footer.php';
